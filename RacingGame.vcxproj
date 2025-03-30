@@ -148,6 +148,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bluetooth.hpp" />
     <ClInclude Include="Data.hpp" />
     <ClInclude Include="GameObject.hpp" />
     <ClInclude Include="GameTexture.hpp" />

@@ -6,18 +6,26 @@
 #include "GameTexture.hpp"
 #include "TextureHandler.hpp"
 
-#define XORIGIN 200/2
-#define YORIGIN 200/2
+
+
 
 int main()
 {
-    vector<string> fileNames = { "Banana", "Center", "Left", "Right" };
+    vector<string> fileNames = { "Banana", "Center", "Left", "Right", "Sky", "Ground", "Road", "Sun", "Boulder", "Car", "CarJump", "CarBoost", "CarJumpBoost"};
     TextureHandler::getInstance().LoadFiles(fileNames);
 
 
 
-    GameObject banana("Banana");
-    banana.SetSprite("Banana");
+    GameObject sky("Sky");
+    GameObject ground("Ground");
+    GameObject road("Road");
+    GameObject sun("Sun");
+    GameObject boulder("Boulder");
+    ground.SetSprite("Ground");
+    road.SetSprite("Road");
+    sun.SetSprite("Sun");
+    boulder.SetSprite("Boulder");
+    sky.SetSprite("Sky");
     Player plr("Center");
     unordered_map<char, int> keymap;
 
@@ -35,6 +43,14 @@ int main()
                 window.close();
             }
              
+        }
+        if (Keyboard::isKeyPressed(Keyboard::Key::W))
+        {
+            keymap['W'] = 1;
+        }
+        else
+        {
+            keymap['W'] = 0;
         }
         if (Keyboard::isKeyPressed(Keyboard::Key::A))
         {
@@ -69,15 +85,26 @@ int main()
         {
             plr.CenterOut();
         }
+        if (keymap['W'] == 1)
+        {
+            plr.SpeedUp();
+        }
+        if (keymap['W'] == 0)
+        {
+            plr.SlowDown();
+        }
 
         
         
        
         window.clear();
-        
-        window.draw(banana.GetSprite());
-        banana.MoveObject(0.05);
+        window.draw(sky.GetSprite());
+        window.draw(ground.GetSprite());
+        window.draw(road.GetSprite());
+        window.draw(sun.GetSprite());
         window.draw(plr.GetSprite());
+        window.draw(boulder.GetSprite());
+        boulder.MoveObject(plr.FetchData().GetSpeed());
         window.display();
     }
 }

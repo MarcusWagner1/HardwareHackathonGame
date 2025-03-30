@@ -38,22 +38,43 @@ public:
 	}
 	void TurnLeft()
 	{
-		SetSprite("Left");
+		//SetSprite("Left");
 	}
 	void TurnRight()
 	{
-		SetSprite("Right");
+		//SetSprite("Right");
 	}
 	void CenterOut()
 	{
-		SetSprite("Center");
+		///SetSprite("Center");
 	}
 	Data& FetchData()
 	{
 		return data;
 	}
+	void SpeedUp()
+	{
+		SetSpeed(0.2);
+		if (aerial == true)
+		{
+			SetSprite("CarJumpBoost");
+		}
+		else
+		{
+			SetSprite("CarBoost");
+		}
+	}
+	void SlowDown()
+	{
+		SetSpeed(0.01);
+		if (aerial == true)
+		{
+			
+		}
+	}
 private:
 	int lTurn;
 	int rTurn;
+	bool aerial;
 	
 };
